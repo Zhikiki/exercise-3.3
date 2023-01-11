@@ -1,9 +1,9 @@
 // Exporting main-view so it will be available for use by other components, modules, files
 import { useState } from 'react';
-import { BookCard } from '../book-card/book-card';
-import { BookView } from '../book-view/book-view';
+import BookCard from '../book-card/book-card';
+import BookView from '../book-view/book-view';
 
-export const MainView = () => {
+const MainView = () => {
   const [books, setBooks] = useState([
     {
       id: 1,
@@ -72,3 +72,5 @@ export const MainView = () => {
     );
   }
 };
+
+export default MainView

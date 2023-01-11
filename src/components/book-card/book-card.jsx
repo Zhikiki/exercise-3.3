@@ -1,4 +1,4 @@
-export const BookCard = ({ book, onBookClick }) => {
+const BookCard = ({ book, onBookClick }) => {
   return (
     <div
       onClick={() => {
@@ -9,3 +9,5 @@ export const BookCard = ({ book, onBookClick }) => {
     </div>
   );
 };
+
+export default BookCard
