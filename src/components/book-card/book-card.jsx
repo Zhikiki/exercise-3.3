@@ -1,4 +1,4 @@
-import PropTypes from "prop-types"
+import PropTypes from 'prop-types';
 
 const BookCard = ({ book, onBookClick }) => {
   return (
@@ -16,9 +16,9 @@ BookCard.propTypes = {
   book: PropTypes.shape({
     title: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
-    author: PropTypes.string.isRequired
+    author: PropTypes.string.isRequired,
   }).isRequired,
-  onBookClick: PropTypes.func.isRequired
-}
+  onBookClick: PropTypes.func.isRequired,
+};
 
-export default BookCard
+export default BookCard;
