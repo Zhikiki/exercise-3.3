@@ -45,17 +45,27 @@ const MainView = () => {
     return <div>The list is empty</div>;
   } else {
     return (
-      <div>
-        {books.map((book) => (
-          <BookCard
-            key={book.id}
-            book={book}
-            onBookClick={(newSelectedBook) => {
-              setSelectedBook(newSelectedBook);
-            }}
-          />
-        ))}
-      </div>
+      <>
+        <div>
+          {books.map((book) => (
+            <BookCard
+              key={book.id}
+              book={book}
+              onBookClick={(newSelectedBook) => {
+                setSelectedBook(newSelectedBook);
+              }}
+            />
+          ))}
+        </div>
+        <hr />
+        <button
+          onClick={() => {
+            setUser(null);
+          }}
+        >
+          Log out
+        </button>
+      </>
     );
   }
 };
