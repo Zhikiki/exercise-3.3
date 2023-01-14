@@ -27134,10 +27134,13 @@ var _bookCard = require("../book-card/book-card");
 var _bookCardDefault = parcelHelpers.interopDefault(_bookCard);
 var _bookView = require("../book-view/book-view");
 var _bookViewDefault = parcelHelpers.interopDefault(_bookView);
+var _loginView = require("../login-view/login-view");
 var _s = $RefreshSig$();
 const MainView = ()=>{
     _s();
     const [books, setBooks] = (0, _react.useState)([]);
+    const [selectedBook, setSelectedBook] = (0, _react.useState)(null);
+    const [user, setUser] = (0, _react.useState)(null);
     (0, _react.useEffect)(()=>{
         fetch("https://openlibrary.org/search.json?q=star+wars").then((response)=>response.json()).then((data)=>{
             console.log("books from api:", data);
@@ -27152,7 +27155,13 @@ const MainView = ()=>{
             setBooks(booksFromApi);
         });
     }, []);
-    const [selectedBook, setSelectedBook] = (0, _react.useState)(null);
+    if (!user) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _loginView.LoginView), {
+        onLoggedIn: (user)=>setUser(user)
+    }, void 0, false, {
+        fileName: "src/components/main-view/main-view.jsx",
+        lineNumber: 30,
+        columnNumber: 12
+    }, undefined);
     if (selectedBook) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _bookViewDefault.default), {
         book: selectedBook,
         onBackClick: ()=>{
@@ -27160,14 +27169,14 @@ const MainView = ()=>{
         }
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 29,
+        lineNumber: 35,
         columnNumber: 7
     }, undefined);
     if (books.length === 0) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: "The list is empty"
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 39,
+        lineNumber: 45,
         columnNumber: 12
     }, undefined);
     else return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27178,16 +27187,16 @@ const MainView = ()=>{
                 }
             }, book.id, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 44,
+                lineNumber: 50,
                 columnNumber: 11
             }, undefined))
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 42,
+        lineNumber: 48,
         columnNumber: 7
     }, undefined);
 };
-_s(MainView, "ZOO6VbTm3wDeaMQdk4zugrCKqQc=");
+_s(MainView, "z8Hr9RFdM2NPhcMOBs/FokIs+b8=");
 _c = MainView;
 exports.default = MainView;
 var _c;
@@ -27198,7 +27207,7 @@ $RefreshReg$(_c, "MainView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../book-card/book-card":"8FC36","../book-view/book-view":"6u6eS","@parcel/transformer-js/src/esmodule-helpers.js":"lGshf","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"hgFJD"}],"8FC36":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../book-card/book-card":"8FC36","../book-view/book-view":"6u6eS","@parcel/transformer-js/src/esmodule-helpers.js":"lGshf","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"hgFJD","../login-view/login-view":"9YtA0"}],"8FC36":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$1994 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -28246,6 +28255,105 @@ $RefreshReg$(_c, "BookView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"lGshf","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"hgFJD"}],"lJZlQ":[function() {},{}]},["aYG8m","eGtyH","d8Dch"], "d8Dch", "parcelRequire5cfa")
+},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"lGshf","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"hgFJD"}],"9YtA0":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$9fee = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$9fee.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "LoginView", ()=>LoginView);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _react = require("react");
+var _s = $RefreshSig$();
+const LoginView = ({ onLoggedIn  })=>{
+    _s();
+    const [username, setUsername] = (0, _react.useState)("");
+    const [password, setPassword] = (0, _react.useState)("");
+    const handleSubmit = (event)=>{
+        // this prevents the default behavior of the form which is to reload the entire page
+        event.preventDefault();
+        const data = {
+            access: username,
+            secret: password
+        };
+        fetch("https://openlibrary.org/account/login.json", {
+            method: "POST",
+            body: JSON.stringify(data)
+        }).then((response)=>{
+            if (response.ok) onLoggedIn(username);
+            else alert("Login failed");
+        });
+    };
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("form", {
+        onSubmit: handleSubmit,
+        children: [
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
+                children: [
+                    "Username:",
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
+                        type: "text",
+                        value: username,
+                        onChange: (e)=>setUsername(e.target.value),
+                        minLength: "3",
+                        required: true
+                    }, void 0, false, {
+                        fileName: "src/components/login-view/login-view.jsx",
+                        lineNumber: 32,
+                        columnNumber: 9
+                    }, undefined)
+                ]
+            }, void 0, true, {
+                fileName: "src/components/login-view/login-view.jsx",
+                lineNumber: 30,
+                columnNumber: 7
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
+                children: [
+                    "Password:",
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
+                        type: "password",
+                        value: password,
+                        onChange: (e)=>setPassword(e.target.value),
+                        required: true
+                    }, void 0, false, {
+                        fileName: "src/components/login-view/login-view.jsx",
+                        lineNumber: 42,
+                        columnNumber: 9
+                    }, undefined)
+                ]
+            }, void 0, true, {
+                fileName: "src/components/login-view/login-view.jsx",
+                lineNumber: 40,
+                columnNumber: 7
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                type: "submit",
+                children: "Submit"
+            }, void 0, false, {
+                fileName: "src/components/login-view/login-view.jsx",
+                lineNumber: 49,
+                columnNumber: 7
+            }, undefined)
+        ]
+    }, void 0, true, {
+        fileName: "src/components/login-view/login-view.jsx",
+        lineNumber: 29,
+        columnNumber: 5
+    }, undefined);
+};
+_s(LoginView, "wuQOK7xaXdVz4RMrZQhWbI751Oc=");
+_c = LoginView;
+var _c;
+$RefreshReg$(_c, "LoginView");
+
+  $parcel$ReactRefreshHelpers$9fee.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"lGshf","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"hgFJD"}],"lJZlQ":[function() {},{}]},["aYG8m","eGtyH","d8Dch"], "d8Dch", "parcelRequire5cfa")
 
 //# sourceMappingURL=index.b4b6dfad.js.map
