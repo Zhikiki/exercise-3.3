@@ -1,4 +1,4 @@
-const BookView = ({ book, onBackClick }) => {
+export const BookView = ({ book, onBackClick }) => {
   return (
     <div>
       <div>
@@ -16,5 +16,3 @@ const BookView = ({ book, onBackClick }) => {
     </div>
   );
 };
-
-export default BookView
