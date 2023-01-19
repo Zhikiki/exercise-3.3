@@ -4,7 +4,7 @@ export const BookView = ({ book, onBackClick }) => {
   return (
     <div>
       <div>
-        <img src={book.image} />
+        <img className='w-100' src={book.image} />
       </div>
       <div>
         <span>Title: </span>
@@ -14,7 +14,7 @@ export const BookView = ({ book, onBackClick }) => {
         <span>Author: </span>
         <span>{book.author}</span>
       </div>
-      <button onClick={onBackClick} className='back-button' style={{cursor: "pointer"}}>
+      <button className='back-button' onClick={onBackClick}>
         Back
       </button>
     </div>
