@@ -7,11 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.scss';
 
 const App = () => {
-  return (
-    <Container>
-      <MainView />
-    </Container>
-  );
+  return <MainView />;
 };
 
 const container = document.querySelector('#root');
