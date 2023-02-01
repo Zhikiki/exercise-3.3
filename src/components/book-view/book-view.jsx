@@ -4,9 +4,6 @@ import './book-view.scss';
 
 export const BookView = ({ books }) => {
   const { bookId } = useParams();
-  console.log(books);
-  console.log(bookId);
-
 
   const book = books.find((b) => b.id === bookId);
 
