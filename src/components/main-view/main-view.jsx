@@ -1,3 +1,5 @@
+import { useSelector, useDispatch } from 'react-redux';
+import { setBooks } from '../../redux/reducers/books';
 import { useState, useEffect } from 'react';
 import { BookCard } from '../book-card/book-card';
 import { BookView } from '../book-view/book-view';
@@ -8,10 +10,11 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
-
 export const MainView = () => {
-  const [books, setBooks] = useState([]);
+  const books = useSelector((state) => state.books);
   const [user, setUser] = useState(null);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     fetch('https://openlibrary.org/search.json?q=star+wars')
@@ -25,10 +28,9 @@ export const MainView = () => {
             author: doc.author_name?.[0],
           };
         });
-
-        setBooks(booksFromApi);
+        dispatch(setBooks(booksFromApi));
       });
-  }, []);
+  }, [dispatch]);
 
   return (
     <BrowserRouter>
@@ -75,7 +77,7 @@ export const MainView = () => {
                   <Col>The list is empty!</Col>
                 ) : (
                   <Col md={8}>
-                    <BookView books={books} />
+                    <BookView />
                   </Col>
                 )}
               </>
