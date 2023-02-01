@@ -1,3 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-
-export const store = configureStore({});
+import booksReducer from './reducers/books';
+export const store = configureStore({
+  reducer: { books: booksReducer },
+});
