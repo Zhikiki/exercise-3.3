@@ -2,7 +2,11 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
-export const LoginView = ({ onLoggedIn }) => {
+import { useDispatch } from 'react-redux';
+import { setUser } from '../../redux/reducers/user';
+
+export const LoginView = () => {
+  const dispatch = useDispatch();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -14,13 +18,14 @@ export const LoginView = ({ onLoggedIn }) => {
       access: username,
       secret: password,
     };
+    console.log(data);
 
     fetch('https://openlibrary.org/account/login.json', {
       method: 'POST',
       body: JSON.stringify(data),
     }).then((response) => {
       if (response.ok) {
-        onLoggedIn(username);
+        dispatch(setUser(username));
       } else {
         alert('Login failed');
       }

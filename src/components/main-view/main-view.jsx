@@ -1,5 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { setBooks } from '../../redux/reducers/books';
+import { setUser } from '../../redux/reducers/user';
+
 import { useState, useEffect } from 'react';
 import { BookCard } from '../book-card/book-card';
 import { BookView } from '../book-view/book-view';
@@ -12,7 +14,9 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 export const MainView = () => {
   const books = useSelector((state) => state.books.books);
-  const [user, setUser] = useState(null);
+  const user = useSelector((state) => state.user.user);
+  console.log(user);
+  // const [user, setUser] = useState(null);
 
   const dispatch = useDispatch();
 
@@ -35,7 +39,7 @@ export const MainView = () => {
   return (
     <BrowserRouter>
       <Row>
-        <NavigationBar user={user} onLoggedOut={() => setUser(null)} />
+        <NavigationBar />
       </Row>
       <Row className='justify-content-md-center'>
         <Routes>
@@ -61,7 +65,7 @@ export const MainView = () => {
                   <Navigate to='/' replace />
                 ) : (
                   <Col md={5}>
-                    <LoginView onLoggedIn={(user) => setUser(user)} />
+                    <LoginView />
                   </Col>
                 )}
               </>
