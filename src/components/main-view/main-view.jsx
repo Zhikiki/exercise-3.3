@@ -11,7 +11,7 @@ import Row from 'react-bootstrap/Row';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 export const MainView = () => {
-  const books = useSelector((state) => state.books);
+  const books = useSelector((state) => state.books.books);
   const [user, setUser] = useState(null);
 
   const dispatch = useDispatch();
