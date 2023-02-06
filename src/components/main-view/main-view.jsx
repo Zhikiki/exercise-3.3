@@ -4,6 +4,7 @@ import { setUser } from '../../redux/reducers/user';
 
 import { useState, useEffect } from 'react';
 import { BookCard } from '../book-card/book-card';
+import { BooksList } from '../books-list/books-list';
 import { BookView } from '../book-view/book-view';
 import { LoginView } from '../login-view/login-view';
 import { SignupView } from '../signup-view/signup-view';
@@ -93,17 +94,8 @@ export const MainView = () => {
               <>
                 {!user ? (
                   <Navigate to='/login' replace />
-                ) : books.length === 0 ? (
-                  <Col>The list is empty!</Col>
-                ) : (
-                  <>
-                    {books.map((book) => (
-                      <Col className='mb-4' key={book.id} md={3}>
-                        <BookCard book={book} />
-                      </Col>
-                    ))}
-                  </>
-                )}
+                ) : <BooksList/>
+                }
               </>
             }
           />
