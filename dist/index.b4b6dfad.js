@@ -29104,19 +29104,24 @@ parcelHelpers.defineInteropFlag(exports);
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "setBooks", ()=>setBooks);
+parcelHelpers.export(exports, "setFilter", ()=>setFilter);
 var _toolkit = require("@reduxjs/toolkit");
 const booksSlice = (0, _toolkit.createSlice)({
     name: "books",
     initialState: {
-        books: []
+        books: [],
+        filter: ""
     },
     reducers: {
         setBooks: (state, action)=>{
             state.books = action.payload;
+        },
+        setFilter: (state, action)=>{
+            state.filter = action.payload;
         }
     }
 });
-const { setBooks  } = booksSlice.actions;
+const { setBooks , setFilter  } = booksSlice.actions;
 exports.default = booksSlice.reducer;
 
 },{"@reduxjs/toolkit":"lL1Ef","@parcel/transformer-js/src/esmodule-helpers.js":"lGshf"}],"lL1Ef":[function(require,module,exports) {
